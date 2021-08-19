@@ -7,7 +7,7 @@
   <a href="https://github.com/tsirysndr/speedy/tree/master/_examples" target="_blank">
     <img alt="view examples" src="https://img.shields.io/badge/learn%20by-examples-0077b3.svg">
   </a>
-  <a href="https://travis-ci.org/tsirysndr/speedy" target="_blank">
+  <a href="https://travis-ci.com/tsirysndr/speedy" target="_blank">
     <img alt="build status" src="https://img.shields.io/travis/tsirysndr/speedy/master.svg">
   </a>
   <a href="https://codecov.io/github/tsirysndr/speedy?branch=master" target="_blank">
@@ -34,8 +34,17 @@ go get -u github.com/tsirysndr/speedy
 
 ## 🚀 Usage
 
-```sh
-bla bla
+```go
+import (
+	"fmt"
+
+	"github.com/tsirysndr/speedy"
+)
+
+func main() {
+	r, _ := speedy.Start(speedy.OOKLA)
+	fmt.Printf("Download: %f Mbps | Upload: %f Mbps", r.Download, r.Upload)
+}
 ```
 
 ## Run tests
