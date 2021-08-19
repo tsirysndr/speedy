@@ -42,7 +42,7 @@ import (
 )
 
 func main() {
-	r, _ := speedy.Start(speedy.OOKLA)
+	r, _ := speedy.Start(speedy.OOKLA) // Or speedy.NETFLIX
 	fmt.Printf("Download: %f Mbps | Upload: %f Mbps", r.Download, r.Upload)
 }
 ```
