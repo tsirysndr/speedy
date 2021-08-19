@@ -21,7 +21,7 @@
   </a>
 </p>
 
-Go library to test internet speed using fast.com and speedtest.net
+Go library to test internet speed using [fast.com](https://fast.com) and [speedtest.net](https://speedtest.net)
 
 [![Speedy Gonzales](https://upload.wikimedia.org/wikipedia/en/f/fe/Speedy_Gonzales.svg)](https://en.wikipedia.org/wiki/Speedy_Gonzales)
 
