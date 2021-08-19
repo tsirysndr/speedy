@@ -67,4 +67,4 @@ Give a ⭐️ if this project helped you!
 ## 📝 License
 
 Copyright © 2021 [Tsiry Sandratraina](https://github.com/tsirysndr).<br />
-This project is [BSD](http://www.google.com) licensed.
+This project is [BSD](https://github.com/tsirysndr/speedy/blob/master/LICENSE) licensed.
