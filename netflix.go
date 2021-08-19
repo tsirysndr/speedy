@@ -4,7 +4,9 @@ import (
 	"encoding/json"
 	"io"
 	"net/http"
+	"strconv"
 	"strings"
+	"time"
 
 	"golang.org/x/net/html"
 )
@@ -74,8 +76,28 @@ func ParseToken() (string, error) {
 	return "", nil
 }
 
-func BytesToNetworkbits(bytes int) float32 {
-	return float32(float32(bytes) * 8 * float32(1.0415))
+func GetChunkedResult(url string) (int, error) {
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		return 0, err
+	}
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		return 0, err
+	}
+
+	defer resp.Body.Close()
+
+	i := 0
+	chunk := 100 * 1024
+	for {
+		_, err := io.ReadFull(resp.Body, make([]byte, chunk))
+		if err != nil {
+			return i * chunk, err
+		}
+		i++
+	}
 }
 
 func NetflixDownloadTest() (float64, error) {
@@ -95,12 +117,35 @@ func NetflixDownloadTest() (float64, error) {
 		return 0, uerr
 	}
 
-	//return urls[0].URL, nil
-	return 0, nil
+	size, _ := GetFilesize(urls[1].URL)
+	start := time.Now().Unix()
+	GetHtmlResult(urls[1].URL)
+	end := time.Now().Unix()
+
+	return float64(size / (end - start) * 8 / (1024 * 1024)), nil
 }
 
 func NetflixUploadTest() (float64, error) {
+	// TODO: Implement
 	return 0, nil
+}
+
+func GetFilesize(url string) (int64, error) {
+	resp, err := http.Head(url)
+	if err != nil {
+		return 0, err
+	}
+
+	// Is our request ok?
+
+	if resp.StatusCode != http.StatusOK {
+		return 0, err
+	}
+
+	// the Header "Content-Length" will let us know
+	// the total file size to download
+	size, _ := strconv.Atoi(resp.Header.Get("Content-Length"))
+	return int64(size), nil
 }
 
 func StartNetflixTest() (*Result, error) {
