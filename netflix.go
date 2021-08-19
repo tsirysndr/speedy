@@ -74,29 +74,46 @@ func ParseToken() (string, error) {
 	return "", nil
 }
 
-func DownloadTest() (string, error) {
+func BytesToNetworkbits(bytes int) float32 {
+	return float32(float32(bytes) * 8 * float32(1.0415))
+}
+
+func NetflixDownloadTest() (float64, error) {
 	token, err := ParseToken()
 	if err != nil {
-		return "", err
+		return 0, err
 	}
 	baseurl := "https://api.fast.com/"
 	url := baseurl + "netflix/speedtest?https=true&token=" + token + "&urlCount=3"
 	r, err := GetHtmlResult(url)
 	if err != nil {
-		return "", err
+		return 0, err
 	}
 	urls := []UrlResponse{}
 	uerr := json.Unmarshal([]byte(r), &urls)
 	if uerr != nil {
-		return "", uerr
+		return 0, uerr
 	}
-	return urls[0].URL, nil
+
+	//return urls[0].URL, nil
+	return 0, nil
 }
 
-func UploadTest(token string) (int, error) {
+func NetflixUploadTest() (float64, error) {
 	return 0, nil
 }
 
 func StartNetflixTest() (*Result, error) {
-	return nil, nil
+	d, err := NetflixDownloadTest()
+	if err != nil {
+		return nil, err
+	}
+	u, err := NetflixUploadTest()
+	if err != nil {
+		return nil, err
+	}
+	return &Result{
+		Download: d,
+		Upload:   u,
+	}, nil
 }

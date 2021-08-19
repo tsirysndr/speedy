@@ -26,16 +26,16 @@ func TestParseToken(t *testing.T) {
 	t.Logf("ParseToken() = %s", token)
 }
 
-func TestDownloadTest(t *testing.T) {
-	r, err := DownloadTest()
+func TestNetflixDownloadTest(t *testing.T) {
+	r, err := NetflixDownloadTest()
 	if err != nil {
-		t.Errorf("DownloadTest() = %s", err)
+		t.Errorf("NetflixDownloadTest() = %s", err)
 	}
-	t.Logf("DownloadTest() = %s", r)
+	t.Logf("NetflixDownloadTest() = %f", r)
 }
 
-func TestUploadTest(t *testing.T) {
-	t.Log("TestUploadTest")
+func TestNetflixUploadTest(t *testing.T) {
+	t.Log("TestNetflixUploadTest")
 }
 
 func TestStartNetflixTest(t *testing.T) {

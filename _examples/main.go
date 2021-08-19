@@ -1,7 +1,12 @@
 package main
 
-import "github.com/tsirysndr/speedy"
+import (
+	"fmt"
+
+	"github.com/tsirysndr/speedy"
+)
 
 func main() {
-	speedy.Start(speedy.OOKLA)
+	r, _ := speedy.Start(speedy.OOKLA)
+	fmt.Println(r)
 }

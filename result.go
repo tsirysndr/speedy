@@ -1,6 +1,6 @@
 package speedy
 
 type Result struct {
-	Download int
-	Upload   int
+	Download float64
+	Upload   float64
 }
