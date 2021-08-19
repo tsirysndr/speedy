@@ -38,6 +38,12 @@ func TestUploadTest(t *testing.T) {
 	t.Log("TestUploadTest")
 }
 
-func TestNetflixTest(t *testing.T) {
-	t.Log("TestNetflixTest")
+func TestStartNetflixTest(t *testing.T) {
+	t.Log("StartTestNetflixTest")
+}
+
+func BenchmarkStartNetflixTest(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		StartNetflixTest()
+	}
 }
